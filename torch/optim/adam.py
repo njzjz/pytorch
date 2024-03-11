@@ -107,7 +107,7 @@ class Adam(Optimizer):
                     state['step'] = (
                         torch.zeros((), dtype=_get_scalar_dtype(is_fused=group['fused']), device=p.device)
                         if group['capturable'] or group['fused']
-                        else torch.tensor(0.0, dtype=_get_scalar_dtype())
+                        else torch.tensor(0.0, dtype=_get_scalar_dtype(), device="cpu")
                     )
                     # Exponential moving average of gradient values
                     state['exp_avg'] = torch.zeros_like(p, memory_format=torch.preserve_format)
